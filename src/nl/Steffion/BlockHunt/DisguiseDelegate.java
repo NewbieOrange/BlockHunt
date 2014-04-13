@@ -1,5 +1,6 @@
 package nl.Steffion.BlockHunt;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -10,8 +11,20 @@ public class DisguiseDelegate
 
 	WrapperInterface m_wrapper = null;
 	
-	final DELEGATE_WRAPPER m_wrapperType = DELEGATE_WRAPPER.WRAPPER_DISGUISECRAFT;
+	DELEGATE_WRAPPER m_wrapperType = null;
 
+	public DisguiseDelegate()
+	{
+	    if (Bukkit.getServer().getPluginManager().getPlugin("LibsDisguises") != null)
+	    {
+	        m_wrapperType = DELEGATE_WRAPPER.WRAPPER_LIBSDISGUISE;
+	    }
+	    else
+	    {
+	        m_wrapperType = DELEGATE_WRAPPER.WRAPPER_DISGUISECRAFT;
+	    }
+	}
+	
 	public enum DELEGATE_WRAPPER
 	{
 		WRAPPER_LIBSDISGUISE,

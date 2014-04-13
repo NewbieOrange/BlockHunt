@@ -40,7 +40,6 @@ public class LibsDisguiseWrapper implements WrapperInterface
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public boolean IsDisguised(Player player)
 	{
 		return DisguiseAPI.isDisguised(player);

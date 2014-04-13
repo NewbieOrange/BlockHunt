@@ -26,7 +26,7 @@ import nl.Steffion.BlockHunt.Listeners.OnBlockPlaceEvent;
 import nl.Steffion.BlockHunt.Listeners.OnEntityDamageByEntityEvent;
 import nl.Steffion.BlockHunt.Listeners.OnEntityDamageEvent;
 import nl.Steffion.BlockHunt.Listeners.OnEntityDeathEvent;
-import nl.Steffion.BlockHunt.Listeners.OnEntityShootBowEvent;
+//import nl.Steffion.BlockHunt.Listeners.OnEntityShootBowEvent;
 import nl.Steffion.BlockHunt.Listeners.OnFoodLevelChangeEvent;
 import nl.Steffion.BlockHunt.Listeners.OnInventoryClickEvent;
 import nl.Steffion.BlockHunt.Listeners.OnInventoryCloseEvent;
