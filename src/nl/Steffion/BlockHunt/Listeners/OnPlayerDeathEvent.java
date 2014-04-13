@@ -20,6 +20,7 @@ public class OnPlayerDeathEvent implements Listener
                         && arena.seekers.contains(player)) {
                     event.getDrops().clear();
                     event.setDroppedExp(0);
+                    player.setHealth(player.getMaxHealth());
                     event.setDeathMessage(null);
                 }
             }

@@ -63,7 +63,8 @@ public class OnPlayerMoveEvent implements Listener {
 						player.playSound(loc, Sound.GHAST_FIREBALL, 1, 1);
 						player.teleport(arena.hidersWarp);
 					} else if (loc.getBlockY() < minY) {
-						event.setCancelled(true);
+						player.damage(100.00);
+					    event.setCancelled(true);
 						player.playEffect(loc, Effect.ENDER_SIGNAL, null);
 						player.playSound(loc, Sound.GHAST_FIREBALL, 1, 1);
 						player.teleport(arena.hidersWarp);
