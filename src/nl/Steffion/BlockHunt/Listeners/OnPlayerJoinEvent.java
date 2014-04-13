@@ -23,12 +23,12 @@ public class OnPlayerJoinEvent implements Listener
 			{
 				ItemStack book = new ItemStack(Material.WRITTEN_BOOK, 1);
 				BookMeta bm = (BookMeta) book.getItemMeta();
-				bm.setTitle("规则");
-				String p1 = "1.Seeker会自动积攒经验条,使用武器攻击时正确命中和未命中Seeker都回消耗经验条,若经验条为空,再次攻击时会被扣血";
-				String p2 = "2.Hider静止不动5秒后会变成物品兰最右侧物品所示的方块";
-				String p3 = "3.Hider可以选择鸡肉，猪肉，牛肉来变成对应的动物，选择鱼会变成豹猫";
-				String p4 = "4.Hider可以使用糖来恢复体力,同时会发出猫叫吸引Hider注意";
-				String p5 = "5.Hider可以发射烟花来嘲讽Hider并且获得加速跑BUFF";
+				bm.setTitle("躲猫猫游戏规则");
+				String p1 = "1.搜索者会自动积攒经验条,使用武器攻击时正确命中和未命中搜索者都回消耗经验条,若经验条为空,再次攻击时会被扣血";
+				String p2 = "2.躲藏者静止不动5秒后会变成物品兰最右侧物品所示的方块";
+				String p3 = "3.躲藏者可以选择鸡肉，猪肉，牛肉来变成对应的动物，选择鱼会变成豹猫";
+				String p4 = "4.躲藏者可以使用糖来恢复体力,同时会发出猫叫吸引躲藏者注意";
+				String p5 = "5.躲藏者可以发射烟花来嘲讽躲藏者并且获得加速跑BUFF";
 				bm.addPage(p1, p2, p3, p4, p5);
 				book.setItemMeta(bm);
 				player.getInventory().addItem(book);
