@@ -25,12 +25,12 @@ import nl.Steffion.BlockHunt.Listeners.OnBlockBreakEvent;
 import nl.Steffion.BlockHunt.Listeners.OnBlockPlaceEvent;
 import nl.Steffion.BlockHunt.Listeners.OnEntityDamageByEntityEvent;
 import nl.Steffion.BlockHunt.Listeners.OnEntityDamageEvent;
-import nl.Steffion.BlockHunt.Listeners.OnEntityDeathEvent;
 //import nl.Steffion.BlockHunt.Listeners.OnEntityShootBowEvent;
 import nl.Steffion.BlockHunt.Listeners.OnFoodLevelChangeEvent;
 import nl.Steffion.BlockHunt.Listeners.OnInventoryClickEvent;
 import nl.Steffion.BlockHunt.Listeners.OnInventoryCloseEvent;
 import nl.Steffion.BlockHunt.Listeners.OnPlayerCommandPreprocessEvent;
+import nl.Steffion.BlockHunt.Listeners.OnPlayerDeathEvent;
 import nl.Steffion.BlockHunt.Listeners.OnPlayerDropItemEvent;
 import nl.Steffion.BlockHunt.Listeners.OnPlayerInteractEvent;
 import nl.Steffion.BlockHunt.Listeners.OnPlayerJoinEvent;
@@ -155,7 +155,7 @@ public class BlockHunt extends JavaPlugin implements Listener {
 				this);
 		//getServer().getPluginManager().registerEvents(new OnEntityShootBowEvent(),
 		//		this);
-		getServer().getPluginManager().registerEvents(new OnEntityDeathEvent(),
+		getServer().getPluginManager().registerEvents(new OnPlayerDeathEvent(),
 				this);
 
 		ConfigurationSerialization.registerClass(LocationSerializable.class,
