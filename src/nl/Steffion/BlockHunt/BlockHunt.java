@@ -33,7 +33,6 @@ import nl.Steffion.BlockHunt.Listeners.OnPlayerCommandPreprocessEvent;
 import nl.Steffion.BlockHunt.Listeners.OnPlayerDeathEvent;
 import nl.Steffion.BlockHunt.Listeners.OnPlayerDropItemEvent;
 import nl.Steffion.BlockHunt.Listeners.OnPlayerInteractEvent;
-import nl.Steffion.BlockHunt.Listeners.OnPlayerJoinEvent;
 import nl.Steffion.BlockHunt.Listeners.OnPlayerMoveEvent;
 import nl.Steffion.BlockHunt.Listeners.OnPlayerQuitEvent;
 import nl.Steffion.BlockHunt.Listeners.OnSignChangeEvent;
@@ -149,9 +148,6 @@ public class BlockHunt extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(new OnPlayerQuitEvent(),
 				this);
 		getServer().getPluginManager().registerEvents(new OnSignChangeEvent(),
-				this);
-		
-		getServer().getPluginManager().registerEvents(new OnPlayerJoinEvent(),
 				this);
 		//getServer().getPluginManager().registerEvents(new OnEntityShootBowEvent(),
 		//		this);
