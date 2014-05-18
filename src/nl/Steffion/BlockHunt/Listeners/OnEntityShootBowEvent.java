@@ -7,12 +7,12 @@ import nl.Steffion.BlockHunt.W;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
 public class OnEntityShootBowEvent implements Listener {
@@ -22,7 +22,7 @@ public class OnEntityShootBowEvent implements Listener {
 		if(entity instanceof Arrow)
 		{
 			Arrow arrow = (Arrow) entity;
-			LivingEntity le = arrow.getShooter();
+			ProjectileSource le = arrow.getShooter();
 			if(le instanceof Player)
 			{
 				Player player = (Player) le;
