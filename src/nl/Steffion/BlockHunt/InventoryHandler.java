@@ -269,8 +269,7 @@ public class InventoryHandler
 		{
 			if (BlockHunt.econ != null)
 			{
-				int vaultBalance = (int) BlockHunt.econ.getBalance(player
-						.getName());
+				int vaultBalance = (int) BlockHunt.econ.getBalance(player);
 				List<String> lores = new ArrayList<String>();
 				List<String> lores2 = new ArrayList<String>();
 

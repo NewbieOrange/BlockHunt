@@ -11,7 +11,8 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 public class ScoreboardHandler {
-	public static void createScoreboard(Arena arena) {
+	@SuppressWarnings("deprecation")
+    public static void createScoreboard(Arena arena) {
 		if ((Boolean) W.config.get(ConfigC.scoreboard_enabled) == true) {
 			Scoreboard board = arena.scoreboard;
 			if (board.getObjective(arena.arenaName) != null) {
@@ -50,7 +51,8 @@ public class ScoreboardHandler {
 		}
 	}
 
-	public static void updateScoreboard(Arena arena) {
+	@SuppressWarnings("deprecation")
+    public static void updateScoreboard(Arena arena) {
 		if ((Boolean) W.config.get(ConfigC.scoreboard_enabled) == true) {
 			Scoreboard board = arena.scoreboard;
 			Objective object = board.getObjective(DisplaySlot.SIDEBAR);
