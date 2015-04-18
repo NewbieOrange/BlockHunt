@@ -23,7 +23,6 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 public class OnEntityDamageByEntityEvent implements Listener
 {
     
-    @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event)
     {

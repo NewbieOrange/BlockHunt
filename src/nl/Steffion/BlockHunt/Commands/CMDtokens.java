@@ -23,7 +23,6 @@ public class CMDtokens extends DefaultCMD
      * @author Steffion
      */
     
-    @SuppressWarnings("deprecation")
     @Override
     public boolean exectue(Player player, Command cmd, String label, String[] args)
     {

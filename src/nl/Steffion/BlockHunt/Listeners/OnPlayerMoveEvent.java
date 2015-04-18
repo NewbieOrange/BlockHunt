@@ -21,7 +21,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class OnPlayerMoveEvent implements Listener
 {
     
-    @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerMoveEvent(PlayerMoveEvent event)
     {
