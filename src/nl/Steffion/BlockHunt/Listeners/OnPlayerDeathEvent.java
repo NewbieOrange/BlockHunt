@@ -12,12 +12,16 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class OnPlayerDeathEvent implements Listener
 {
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onEntityDeathEvent(PlayerDeathEvent event) {
-        Player player = (Player) event.getEntity();
-        if (player != null) {
-            for (Arena arena : W.arenaList) {
+    public void onEntityDeathEvent(PlayerDeathEvent event)
+    {
+        Player player = event.getEntity();
+        if (player != null)
+        {
+            for (Arena arena : W.arenaList)
+            {
                 if (arena.playersInArena.contains(player)
-                        && arena.seekers.contains(player)) {
+                        && arena.seekers.contains(player))
+                {
                     event.getDrops().clear();
                     event.setDroppedExp(0);
                     player.setHealth(player.getMaxHealth());

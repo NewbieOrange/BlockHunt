@@ -12,23 +12,29 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-public class OnBlockBreakEvent implements Listener {
-
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void onBlockBreakEvent(BlockBreakEvent event) {
-		Player player = event.getPlayer();
-
-		for (Arena arena : W.arenaList) {
-			if (arena.playersInArena.contains(player)) {
-				event.setCancelled(true);
-			}
-		}
-
-		if (event.getBlock().equals(Material.SIGN_POST)
-				|| event.getBlock().equals(Material.WALL_SIGN)) {
-			if (!PermissionsM.hasPerm(player, Permissions.signcreate, true)) {
-				event.setCancelled(true);
-			}
-		}
-	}
+public class OnBlockBreakEvent implements Listener
+{
+    
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onBlockBreakEvent(BlockBreakEvent event)
+    {
+        Player player = event.getPlayer();
+        
+        for (Arena arena : W.arenaList)
+        {
+            if (arena.playersInArena.contains(player))
+            {
+                event.setCancelled(true);
+            }
+        }
+        
+        if (event.getBlock().equals(Material.SIGN_POST)
+                || event.getBlock().equals(Material.WALL_SIGN))
+        {
+            if (!PermissionsM.hasPerm(player, Permissions.signcreate, true))
+            {
+                event.setCancelled(true);
+            }
+        }
+    }
 }

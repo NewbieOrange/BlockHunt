@@ -9,16 +9,20 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 
-public class OnFoodLevelChangeEvent implements Listener {
-
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void onFoodLevelChangeEvent(FoodLevelChangeEvent event) {
-		Player player = (Player) event.getEntity();
-
-		for (Arena arena : W.arenaList) {
-			if (arena.playersInArena.contains(player)) {
-				event.setCancelled(true);
-			}
-		}
-	}
+public class OnFoodLevelChangeEvent implements Listener
+{
+    
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onFoodLevelChangeEvent(FoodLevelChangeEvent event)
+    {
+        Player player = (Player) event.getEntity();
+        
+        for (Arena arena : W.arenaList)
+        {
+            if (arena.playersInArena.contains(player))
+            {
+                event.setCancelled(true);
+            }
+        }
+    }
 }

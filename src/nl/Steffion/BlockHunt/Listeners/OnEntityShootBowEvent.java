@@ -15,32 +15,34 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
-public class OnEntityShootBowEvent implements Listener {
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void onEntityShootBowEvent(EntityShootBowEvent event) {
-		Entity entity = event.getProjectile();
-		if(entity instanceof Arrow)
-		{
-			Arrow arrow = (Arrow) entity;
-			ProjectileSource le = arrow.getShooter();
-			if(le instanceof Player)
-			{
-				Player player = (Player) le;
-				Location loc = entity.getLocation();
-				Vector dir = loc.getDirection();
-				Vector vec = dir.multiply(new Vector(1,0,0));
-				loc.add(vec);
-				
-				for (Arena arena : W.arenaList)
-				{
-					if (arena.playersInArena.contains(player)
-							&& arena.gameState.equals(ArenaState.INGAME))
-					{
-						arrow.teleport(loc);
-						event.setProjectile(arrow);
-					}
-				}
-			}
-		}
-	}
+public class OnEntityShootBowEvent implements Listener
+{
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onEntityShootBowEvent(EntityShootBowEvent event)
+    {
+        Entity entity = event.getProjectile();
+        if (entity instanceof Arrow)
+        {
+            Arrow arrow = (Arrow) entity;
+            ProjectileSource le = arrow.getShooter();
+            if (le instanceof Player)
+            {
+                Player player = (Player) le;
+                Location loc = entity.getLocation();
+                Vector dir = loc.getDirection();
+                Vector vec = dir.multiply(new Vector(1, 0, 0));
+                loc.add(vec);
+                
+                for (Arena arena : W.arenaList)
+                {
+                    if (arena.playersInArena.contains(player)
+                            && arena.gameState.equals(ArenaState.INGAME))
+                    {
+                        arrow.teleport(loc);
+                        event.setProjectile(arrow);
+                    }
+                }
+            }
+        }
+    }
 }

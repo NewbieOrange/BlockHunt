@@ -29,13 +29,13 @@ public class ArenaHandler
         {
             W.arenaList.add((Arena) W.arenas.getFile().get(arenaName));
         }
-
+        
         for (Arena arena : W.arenaList)
         {
             ScoreboardHandler.createScoreboard(arena);
         }
     }
-
+    
     public static void sendMessage(Arena arena, String message, String... vars)
     {
         for (Player player : arena.playersInArena)
@@ -44,7 +44,7 @@ public class ArenaHandler
             player.sendMessage(MessageM.replaceAll(pMessage, vars));
         }
     }
-
+    
     public static void sendFMessage(Arena arena, ConfigC location, String... vars)
     {
         for (Player player : arena.playersInArena)
@@ -54,7 +54,7 @@ public class ArenaHandler
             player.sendMessage(MessageM.replaceAll(pMessage, vars));
         }
     }
-
+    
     public static void playerJoinArena(Player player, String arenaname)
     {
         boolean found = false;
@@ -69,7 +69,7 @@ public class ArenaHandler
                 }
             }
         }
-
+        
         if (!alreadyJoined)
         {
             for (Arena arena : W.arenaList)
@@ -94,7 +94,7 @@ public class ArenaHandler
                                 }
                             }
                         }
-
+                        
                         for (ItemStack invitem : player.getInventory().getArmorContents())
                         {
                             if (invitem.getType() != Material.AIR)
@@ -102,7 +102,7 @@ public class ArenaHandler
                                 inventoryempty = false;
                             }
                         }
-
+                        
                         if ((Boolean) W.config.get(ConfigC.requireInventoryClearOnJoin)
                                 && !inventoryempty)
                         {
@@ -110,7 +110,7 @@ public class ArenaHandler
                                     ConfigC.error_joinInventoryNotEmpty);
                             return;
                         }
-
+                        
                         LocationSerializable zero = new LocationSerializable(
                                 Bukkit.getWorld(player.getWorld().getName().toString()),
                                 0, 0, 0, 0, 0);
@@ -136,7 +136,7 @@ public class ArenaHandler
                                         }
                                     }
                                     arena.playersInArena.add(player);
-
+                                    
                                     PlayerArenaData pad = new PlayerArenaData(
                                             player.getLocation(), player.getGameMode(),
                                             player.getInventory().getContents(), player
@@ -145,9 +145,9 @@ public class ArenaHandler
                                             player.getHealth(), player.getFoodLevel(),
                                             player.getActivePotionEffects(),
                                             player.getAllowFlight());
-
+                                    
                                     W.pData.put(player, pad);
-
+                                    
                                     player.teleport(arena.lobbyWarp);
                                     player.setGameMode(GameMode.SURVIVAL);
                                     for (PotionEffect pe : player
@@ -170,7 +170,7 @@ public class ArenaHandler
                                             new ItemStack(Material.AIR));
                                     player.setFlying(false);
                                     player.setAllowFlight(false);
-
+                                    
                                     if ((Boolean) W.config
                                             .get(ConfigC.shop_blockChooserv1Enabled) == true)
                                     {
@@ -201,12 +201,12 @@ public class ArenaHandler
                                             shopBlockChooser_IM.setLore(lores2);
                                             shopBlockChooser
                                                     .setItemMeta(shopBlockChooser_IM);
-
+                                            
                                             player.getInventory().addItem(
                                                     shopBlockChooser);
                                         }
                                     }
-
+                                    
                                     if ((Boolean) W.config
                                             .get(ConfigC.shop_BlockHuntPassv2Enabled) == true)
                                     {
@@ -231,23 +231,23 @@ public class ArenaHandler
                                             {
                                                 lores2.add(MessageM.replaceAll(lore));
                                             }
-
+                                            
                                             shopBlockHuntPass_IM.setLore(lores2);
                                             shopBlockHuntPass
                                                     .setItemMeta(shopBlockHuntPass_IM);
                                             shopBlockHuntPass.setAmount(W.shop.getFile()
                                                     .getInt(player.getName()
                                                             + ".blockhuntpass"));
-
+                                            
                                             player.getInventory().addItem(
                                                     shopBlockHuntPass);
                                         }
                                     }
                                     player.updateInventory();
-
+                                    
                                     // DisguiseAPI.undisguiseToAll(player);
                                     DisguiseDelegate.GetSingleton().UnDisguise(player);
-
+                                    
                                     ArenaHandler.sendFMessage(arena,
                                             ConfigC.normal_joinJoinedArena, "playername-"
                                                     + player.getName(), "1-"
@@ -285,15 +285,15 @@ public class ArenaHandler
             MessageM.sendFMessage(player, ConfigC.error_joinAlreadyJoined);
             return;
         }
-
+        
         if (!found)
         {
             MessageM.sendFMessage(player, ConfigC.error_noArena, "name-" + arenaname);
         }
-
+        
         SignsHandler.updateSigns();
     }
-
+    
     public static void playerLeaveArena(Player player, boolean message, boolean cleanup)
     {
         Arena arena = null;
@@ -307,7 +307,7 @@ public class ArenaHandler
                 }
             }
         }
-
+        
         if (arena != null)
         {
             if (cleanup)
@@ -317,13 +317,13 @@ public class ArenaHandler
                 {
                     arena.seekers.remove(player);
                 }
-
+                
                 if (arena.playersInArena.size() < arena.minPlayers
                         && arena.gameState.equals(ArenaState.STARTING))
                 {
                     arena.gameState = ArenaState.WAITING;
                     arena.timer = 0;
-
+                    
                     ArenaHandler.sendFMessage(arena, ConfigC.warning_lobbyNeedAtleast,
                             "1-" + arena.minPlayers);
                 }
@@ -339,12 +339,12 @@ public class ArenaHandler
                         ArenaHandler.hidersWin(arena);
                     }
                 }
-
+                
                 if (arena.seekers.size() >= arena.playersInArena.size())
                 {
                     ArenaHandler.seekersWin(arena);
                 }
-
+                
                 if (arena.seekers.size() <= 0 && arena.gameState == ArenaState.INGAME)
                 {
                     Player seeker = arena.playersInArena.get(W.random
@@ -354,10 +354,10 @@ public class ArenaHandler
                             "seeker-" + seeker.getName());
                     ArenaHandler.sendFMessage(arena, ConfigC.normal_ingameSeekerChoosen,
                             "seeker-" + seeker.getName());
-
+                    
                     // DisguiseAPI.undisguiseToAll(seeker);
                     DisguiseDelegate.GetSingleton().UnDisguise(seeker);
-
+                    
                     for (Player pl : Bukkit.getOnlinePlayers())
                     {
                         pl.showPlayer(seeker);
@@ -368,15 +368,15 @@ public class ArenaHandler
                     W.seekertime.put(seeker, arena.waitingTimeSeeker);
                 }
             }
-
+            
             PlayerArenaData pad = new PlayerArenaData(null, null, null, null, null, null,
                     null, null, null, false);
-
+            
             if (W.pData.get(player) != null)
             {
                 pad = W.pData.get(player);
             }
-
+            
             player.getInventory().clear();
             player.getInventory().setContents(pad.pInventory);
             player.getInventory().setArmorContents(pad.pArmor);
@@ -393,9 +393,9 @@ public class ArenaHandler
             {
                 player.setFlying(true);
             }
-
+            
             W.pData.remove(player);
-
+            
             for (Player pl : Bukkit.getOnlinePlayers())
             {
                 pl.showPlayer(player);
@@ -416,13 +416,13 @@ public class ArenaHandler
                         }
                     }
                 }
-
+                
                 // DisguiseAPI.undisguiseToAll(player);
                 DisguiseDelegate.GetSingleton().UnDisguise(player);
             }
-
+            
             ScoreboardHandler.removeScoreboard(player);
-
+            
             MessageM.sendFMessage(player, ConfigC.normal_leaveYouLeft);
             if (message)
             {
@@ -439,10 +439,10 @@ public class ArenaHandler
             }
             return;
         }
-
+        
         SignsHandler.updateSigns();
     }
-
+    
     public static void seekersWin(Arena arena)
     {
         ArenaHandler.sendFMessage(arena, ConfigC.normal_winSeekers);
@@ -477,26 +477,26 @@ public class ArenaHandler
                     W.shop.getFile().set(player.getName() + ".tokens",
                             playerTokens + arena.seekersTokenWin);
                     W.shop.save();
-
+                    
                     MessageM.sendFMessage(player, ConfigC.normal_addedToken, "amount-"
                             + arena.seekersTokenWin);
                 }
             }
         }
-
+        
         arena.seekers.clear();
-
+        
         for (Player player : arena.playersInArena)
         {
             playerLeaveArena(player, false, false);
             player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
         }
-
+        
         arena.gameState = ArenaState.WAITING;
         arena.timer = 0;
         arena.playersInArena.clear();
     }
-
+    
     public static void hidersWin(Arena arena)
     {
         ArenaHandler.sendFMessage(arena, ConfigC.normal_winHiders);
@@ -537,39 +537,39 @@ public class ArenaHandler
                         W.shop.getFile().set(player.getName() + ".tokens",
                                 playerTokens + arena.hidersTokenWin);
                         W.shop.save();
-
+                        
                         MessageM.sendFMessage(player, ConfigC.normal_addedToken,
                                 "amount-" + arena.hidersTokenWin);
                     }
                 }
             }
         }
-
+        
         arena.seekers.clear();
-
+        
         for (Player player : arena.playersInArena)
         {
             playerLeaveArena(player, false, false);
             player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
         }
-
+        
         arena.gameState = ArenaState.WAITING;
         arena.timer = 0;
         arena.playersInArena.clear();
     }
-
+    
     public static void stopArena(Arena arena)
     {
         ArenaHandler.sendFMessage(arena, ConfigC.warning_arenaStopped);
-
+        
         arena.seekers.clear();
-
+        
         for (Player player : arena.playersInArena)
         {
             playerLeaveArena(player, false, false);
             player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
         }
-
+        
         arena.gameState = ArenaState.WAITING;
         arena.timer = 0;
         arena.playersInArena.clear();
